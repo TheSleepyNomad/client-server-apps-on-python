@@ -10,3 +10,7 @@
 --- b'class' - используйте маркировку b''
 --- используйте списки и циклы, не дублируйте функции
 """
+
+byte_words_set = (b'class', b'function', b'method')
+for word in byte_words_set:
+    print(f'Слово - {word}. Тип {type(word)}')
