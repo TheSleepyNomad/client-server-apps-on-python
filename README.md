@@ -1,1 +1,1 @@
-# client-server-apps-on-python
+# Клиент-серверные приложения на Python
