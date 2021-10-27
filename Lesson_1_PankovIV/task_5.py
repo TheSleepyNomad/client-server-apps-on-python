@@ -7,6 +7,7 @@
 Подсказки:
 --- используйте модуль chardet, иначе задание не засчитается!!!
 """
+
 import subprocess
 import chardet
 
