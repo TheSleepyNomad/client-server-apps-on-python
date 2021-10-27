@@ -23,3 +23,11 @@
 
 НАРУШЕНИЕ обозначенных условий - задание не выполнено!!!
 """
+try:
+    with open('test_file.txt', 'r', encoding='utf-8') as file:
+        print(file.read())
+except UnicodeDecodeError:
+    print('На компьютере не получилось открыть файл в кодировке utf-8')
+    with open('test_file.txt', 'rb') as file:
+        for string in file.read().splitlines():
+            print(string.decode('utf-8'))
