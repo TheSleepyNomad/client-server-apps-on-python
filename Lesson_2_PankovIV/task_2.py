@@ -44,4 +44,5 @@ def write_order_to_json(item, quantity, price, buyer, date):
             print('Готово')
 
 
-write_order_to_json('Компьютер', '1', '11500', 'Иванов И.И', '01.01.21')
+if __name__ == '__main__':
+    write_order_to_json('Компьютер', '1', '11500', 'Иванов И.И', '01.01.21')

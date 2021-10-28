@@ -29,9 +29,10 @@ from typing import Union
 import re
 import os.path
 
-# список файлов с данными
-# data_files = ('info_1.txt', 'info_2.txt', 'info_3.txt')
+# Путь к одному или нескольким файлам для чтения
 data_files = 'info_1.txt'
+# data_files = ('info_1.txt', 'info_2.txt', 'info_3.txt')
+# Путь к csv файлу
 path_to_csv = r'./test.csv'
 
 
@@ -42,6 +43,7 @@ def get_data(data: Union[str, list, tuple]):
                   'Тип системы']]
     os_prod_list, os_name_list, os_code_list, os_type_list = [], [], [], []
 
+    # Проверяем, что передают нам - список файлов или один
     if isinstance(data, list) or isinstance(data, tuple):
         for file_name in data:
             with open(file_name, 'rb') as f_data:
@@ -103,4 +105,5 @@ def write_to_csv(path_to_csv: str):
                 csv_writer.writerow(row)
 
 
-write_to_csv(path_to_csv)
+if __name__ == '__main__':
+    write_to_csv(path_to_csv)
