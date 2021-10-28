@@ -14,6 +14,7 @@
 """
 
 import json
+from json.decoder import JSONDecodeError
 
 
 def write_order_to_json(item, quantity, price, buyer, date):
@@ -24,12 +25,23 @@ def write_order_to_json(item, quantity, price, buyer, date):
              'Покупатель': buyer,
              'Дата': date, }
 
+    orders = {'orders': []}
+
     # Открываем файл на чтение
     with open('orders.json', 'r+', encoding='utf-8') as file_json:
-        data = json.load(file_json)
-        data['orders'].append(order)
-        file_json.seek(0)
-        json.dump(data, file_json, indent=4)
+        # Пробуем прочесть файл.
+        try:
+            data = json.load(file_json)
+            data['orders'].append(order)
+            file_json.seek(0)
+            json.dump(data, file_json, indent=4)
+        # На случай, если файл пустой
+        except JSONDecodeError:
+            print('Файл пустой. Запишем новые данные')
+            file_json.seek(0)
+            orders['orders'].append(order)
+            json.dump(orders, file_json, indent=4)
+            print('Готово')
 
 
 write_order_to_json('Компьютер', '1', '11500', 'Иванов И.И', '01.01.21')
