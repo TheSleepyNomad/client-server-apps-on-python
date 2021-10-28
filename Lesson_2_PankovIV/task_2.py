@@ -17,17 +17,19 @@ import json
 
 
 def write_order_to_json(item, quantity, price, buyer, date):
+    # Формируем запись о заказе
     order = {'Товар': item,
              'Количество': quantity,
              'Цена': price,
              'Покупатель': buyer,
              'Дата': date, }
-    with open('orders.json', 'r+', encoding='utf-8') as f_n:
-        objs = json.load(f_n)
-        objs['orders'].append(order)
-        print(objs)
-        f_n.seek(0)
-        json.dump(objs, f_n, indent=4)
+
+    # Открываем файл на чтение
+    with open('orders.json', 'r+', encoding='utf-8') as file_json:
+        data = json.load(file_json)
+        data['orders'].append(order)
+        file_json.seek(0)
+        json.dump(data, file_json, indent=4)
 
 
 write_order_to_json('Компьютер', '1', '11500', 'Иванов И.И', '01.01.21')
