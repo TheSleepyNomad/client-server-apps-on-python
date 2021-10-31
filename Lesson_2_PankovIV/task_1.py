@@ -30,8 +30,8 @@ import re
 import os.path
 
 # Путь к одному или нескольким файлам для чтения
-data_files = 'info_1.txt'
-# data_files = ('info_1.txt', 'info_2.txt', 'info_3.txt')
+# data_files = 'info_1.txt'
+data_files = ('info_1.txt', 'info_2.txt', 'info_3.txt')
 # Путь к csv файлу
 path_to_csv = r'./test.csv'
 
@@ -43,7 +43,7 @@ def get_data(data: Union[str, list, tuple]):
                   'Тип системы']]
     os_prod_list, os_name_list, os_code_list, os_type_list = [], [], [], []
 
-    # Проверяем, что передают нам - список файлов или один
+    # Проверяем, что передают нам - список файлов или один файл
     if isinstance(data, list) or isinstance(data, tuple):
         for file_name in data:
             with open(file_name, 'rb') as f_data:
@@ -98,7 +98,7 @@ def get_data(data: Union[str, list, tuple]):
 
 def write_to_csv(path_to_csv: str):
     if os.path.exists(path_to_csv):
-        with open(path_to_csv, 'w+', encoding='utf-8') as file_csv:
+        with open(path_to_csv, 'w+', encoding='utf-8', newline='') as file_csv:
             data_for_csv = get_data(data_files)
             csv_writer = csv.writer(file_csv)
             for row in data_for_csv:
